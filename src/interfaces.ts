@@ -3,5 +3,6 @@ export interface Album {
   displayName: string;
   elo: number;
   cover: string;
+  coverPosition: string;
   accent: string;
 }
