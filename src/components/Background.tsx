@@ -24,6 +24,7 @@ export default function Background({
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
         transform: 'scale(1.02, 1.05)',
+        transition: 'background-image 1s',
         [theme.breakpoints.down('sm')]: {
           height: '50%',
           width: '100%',
@@ -41,6 +42,7 @@ export default function Background({
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
         transform: 'scale(1.015, 1.05)',
+        transition: 'background-image 1s',
         [theme.breakpoints.up('md')]: {
           top: 0,
           right: 0,
