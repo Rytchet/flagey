@@ -3,7 +3,7 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 
 import { Card, CardActionArea, CardMedia, Grid } from '@material-ui/core';
 
-import { Album } from './interfaces';
+import { Album } from '../interfaces';
 
 export default function AlbumCards({
   album1,

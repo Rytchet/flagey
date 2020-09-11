@@ -4,11 +4,7 @@ import EloRank from 'elo-rank';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
-import AlbumCards from './AlbumCards';
-import Background from './Background';
-import Ranking from './Ranking';
-import Button from './Button';
-
+import { AlbumCards, Background, Ranking, Button } from './components';
 import { Album } from './interfaces';
 import albums from './albums';
 

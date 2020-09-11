@@ -8,7 +8,7 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 
-import { Album } from './interfaces';
+import { Album } from '../interfaces';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

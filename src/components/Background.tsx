@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 
-import { Album } from './interfaces';
+import { Album } from '../interfaces';
 
 export default function Background({
   album1,
