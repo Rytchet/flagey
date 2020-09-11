@@ -1,18 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import EloRank from 'elo-rank';
 
-import CssBaseline from '@material-ui/core/CssBaseline';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import EqualizerIcon from '@material-ui/icons/Equalizer';
-import { Fab, Dialog } from '@material-ui/core';
-
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableRow from '@material-ui/core/TableRow';
+import CssBaseline from '@material-ui/core/CssBaseline';
 
 import AlbumCards from './AlbumCards';
 import Background from './Background';
+import Ranking from './Ranking';
+import Button from './Button';
+
 import { Album } from './interfaces';
 import albums from './albums';
 
@@ -24,21 +20,6 @@ const useStyles = makeStyles((theme: Theme) =>
       height: '100vh',
       position: 'relative',
       backgroundColor: 'black',
-    },
-    fab: {
-      position: 'absolute',
-      bottom: 20,
-      right: 20,
-    },
-    icon: {
-      marginRight: '5px',
-    },
-    table: {
-      minWidth: '500px',
-      paddingBottom: '30px',
-      [theme.breakpoints.down('sm')]: {
-        minWidth: '82vw',
-      },
     },
   })
 );
@@ -52,7 +33,6 @@ function App() {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const [loaded, setLoaded] = useState(false);
-  const [displayTitles, setDisplayTitles] = useState(false);
   const [album1, setAlbum1] = useState({} as Album);
   const [album2, setAlbum2] = useState({} as Album);
 
@@ -93,6 +73,8 @@ function App() {
   useEffect(() => {
     setNewAlbums();
     setLoaded(true);
+    // This line gives an error about a missing dependency, but it's ok to ignore
+    // eslint-disable-next-line
   }, []);
 
   if (!loaded) {
@@ -105,54 +87,9 @@ function App() {
       <CssBaseline />
       <AlbumCards album1={album1} album2={album2} pick={pick} />
 
-      <Fab
-        color="secondary"
-        variant="extended"
-        className={classes.fab}
-        onClick={() => setOpen(true)}
-      >
-        <EqualizerIcon className={classes.icon} />
-        Zobacz ranking
-      </Fab>
+      <Button setOpen={setOpen} />
 
-      <Dialog onClose={() => setOpen(false)} open={open}>
-        <Table
-          className={classes.table}
-          onClick={() => setDisplayTitles(!displayTitles)}
-          style={{
-            cursor: 'pointer',
-          }}
-        >
-          <TableBody>
-            {Array.from(albums.values())
-              .sort((a1, a2) => (a1.elo > a2.elo ? -1 : 1))
-              .map((album) => (
-                <TableRow
-                  key={album.name}
-                  style={{
-                    backgroundImage: `url(${
-                      album.titleCover ? album.titleCover : album.cover
-                    })`,
-                    backgroundRepeat: 'no-repeat',
-                    backgroundSize: 'cover',
-                    backgroundPosition: `50% ${
-                      displayTitles ? album.titlePosition : album.coverPosition
-                    }`,
-                    transition: 'background-position 1s',
-                    height: '80px',
-                  }}
-                >
-                  <TableCell
-                    align="left"
-                    style={{
-                      border: '0',
-                    }}
-                  ></TableCell>
-                </TableRow>
-              ))}
-          </TableBody>
-        </Table>
-      </Dialog>
+      <Ranking setOpen={setOpen} open={open} albums={albums} />
     </div>
   );
 }
