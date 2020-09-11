@@ -184,7 +184,7 @@ function getRandomAlbum() {
 
 function App() {
   const classes = useStyles();
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const [album1, setAlbum1] = useState({} as Album);
   const [album2, setAlbum2] = useState({} as Album);
