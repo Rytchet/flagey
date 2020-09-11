@@ -51,7 +51,7 @@ export default function AlbumCards({
               className={classes.cover}
               component="img"
               image={album1.cover}
-              title={album1.elo.toString()}
+              title={album1.displayName}
             />
           </CardActionArea>
         </Card>
@@ -63,7 +63,7 @@ export default function AlbumCards({
               className={classes.cover}
               component="img"
               image={album2.cover}
-              title={album2.elo.toString()}
+              title={album2.displayName}
             />
           </CardActionArea>
         </Card>
