@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import EloRank from 'elo-rank';
 
 import CssBaseline from '@material-ui/core/CssBaseline';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import EqualizerIcon from '@material-ui/icons/Equalizer';
 import { Fab, Dialog } from '@material-ui/core';
 
@@ -18,25 +18,30 @@ import albums from './albums';
 
 const elo = new EloRank();
 
-const useStyles = makeStyles({
-  root: {
-    height: '100vh',
-    position: 'relative',
-    backgroundColor: 'black',
-  },
-  fab: {
-    position: 'absolute',
-    bottom: 20,
-    right: 20,
-  },
-  icon: {
-    marginRight: '5px',
-  },
-  table: {
-    minWidth: '500px',
-    paddingBottom: '30px',
-  },
-});
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      height: '100vh',
+      position: 'relative',
+      backgroundColor: 'black',
+    },
+    fab: {
+      position: 'absolute',
+      bottom: 20,
+      right: 20,
+    },
+    icon: {
+      marginRight: '5px',
+    },
+    table: {
+      minWidth: '500px',
+      paddingBottom: '30px',
+      [theme.breakpoints.down('sm')]: {
+        minWidth: '82vw',
+      },
+    },
+  })
+);
 
 function getRandomAlbum() {
   let keys = Array.from(albums.keys());
