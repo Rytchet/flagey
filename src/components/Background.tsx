@@ -22,9 +22,9 @@ export default function Background({
         left: 0,
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
-        backgroundSize: 'cover',
+        backgroundSize: '100% 100%',
         transform: 'scale(1.02, 1.05)',
-        transition: 'background-image 1s',
+        transition: 'background-image 0.2s',
         [theme.breakpoints.down('sm')]: {
           height: '50%',
           width: '100%',
@@ -40,9 +40,9 @@ export default function Background({
 
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
-        backgroundSize: 'cover',
+        backgroundSize: '100% 100%',
         transform: 'scale(1.015, 1.05)',
-        transition: 'background-image 1s',
+        transition: 'background-image 0.5s',
         [theme.breakpoints.up('md')]: {
           top: 0,
           right: 0,
