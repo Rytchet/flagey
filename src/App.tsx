@@ -4,7 +4,13 @@ import EloRank from 'elo-rank';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
-import { AlbumCards, Background, Ranking, Button } from './components';
+import {
+  AlbumCards,
+  Background,
+  Ranking,
+  Buttons,
+  EndSnackbar,
+} from './components';
 import { Album } from './interfaces';
 import albums from './albums';
 
@@ -20,40 +26,53 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-function getRandomAlbum() {
+const getRandomAlbum = () => {
   let keys = Array.from(albums.keys());
   return albums.get(keys[Math.floor(Math.random() * keys.length)])!;
-}
+};
+
+const totalMatches = () => {
+  return (albums.size * (albums.size - 1)) / 2;
+};
 
 function App() {
   const classes = useStyles();
-  const [open, setOpen] = useState(false);
+  const [rankingOpen, setRankingOpen] = useState(false);
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [loaded, setLoaded] = useState(false);
+  const [finished, setFinished] = useState(false);
+  const [matched, setMatched] = useState([] as string[][]);
   const [album1, setAlbum1] = useState({} as Album);
   const [album2, setAlbum2] = useState({} as Album);
 
   const setNewAlbums = () => {
-    const oldAlbum1 = album1.name;
-    const oldAlbum2 = album2.name;
-    let newAlbum1;
-    let newAlbum2;
+    let newAlbum1: Album;
+    let newAlbum2: Album;
 
     do {
       newAlbum1 = getRandomAlbum();
       newAlbum2 = getRandomAlbum();
     } while (
-      newAlbum1.name === oldAlbum1 ||
-      newAlbum1.name === oldAlbum2 ||
-      newAlbum2.name === oldAlbum1 ||
-      newAlbum2.name === oldAlbum2 ||
+      matched.some(
+        // References to these variables are intended, so we can mute a warning
+        // eslint-disable-next-line
+        (match) =>
+          match.includes(newAlbum1.name) && match.includes(newAlbum2.name)
+      ) ||
       newAlbum1.name === newAlbum2.name
     );
+
+    console.log('setting');
+
+    setMatched((matched) => [...matched, [newAlbum1.name, newAlbum2.name]]);
 
     setAlbum1(newAlbum1);
     setAlbum2(newAlbum2);
   };
 
   const pick = (winner: string, loser: string) => {
+    if (finished) return;
+
     let win = albums.get(winner)!;
     let lose = albums.get(loser)!;
 
@@ -63,7 +82,19 @@ function App() {
     win.elo = elo.updateRating(expectedA, 1, win.elo);
     lose.elo = elo.updateRating(expectedB, 0, lose.elo);
 
-    setNewAlbums();
+    if (matched.length < totalMatches()) {
+      setNewAlbums();
+    } else {
+      // Update matched list so the number is accurate
+      setMatched((matched) => [...matched, []]);
+      setFinished(true);
+      setRankingOpen(true);
+      setSnackbarOpen(true);
+    }
+  };
+
+  const restart = async () => {
+    window.location.reload();
   };
 
   useEffect(() => {
@@ -83,9 +114,19 @@ function App() {
       <CssBaseline />
       <AlbumCards album1={album1} album2={album2} pick={pick} />
 
-      <Button setOpen={setOpen} />
+      <Buttons
+        setOpen={setRankingOpen}
+        matches={matched.length - 1}
+        total={totalMatches()}
+      />
 
-      <Ranking setOpen={setOpen} open={open} albums={albums} />
+      <Ranking setOpen={setRankingOpen} open={rankingOpen} albums={albums} />
+
+      <EndSnackbar
+        open={snackbarOpen}
+        setOpen={setSnackbarOpen}
+        restart={restart}
+      />
     </div>
   );
 }
