@@ -41,6 +41,18 @@ const albums: Map<string, Album> = new Map([
     },
   ],
   [
+    'marmur',
+    {
+      name: 'marmur',
+      displayName: 'Marmur',
+      elo: 1200,
+      cover: covers.marmur,
+      accent: '#000',
+      coverPosition: '85%',
+      titlePosition: '52%',
+    },
+  ],
+  [
     'szprycer',
     {
       name: 'szprycer',

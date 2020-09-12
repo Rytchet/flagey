@@ -2,6 +2,7 @@ export { default as trojkat } from './trojkat.jpg';
 export { default as trojkatTitle } from './trojkatTitle.jpg';
 export { default as umowa } from './umowa.jpg';
 export { default as wosk } from './wosk.jpg';
+export { default as marmur } from './marmur.jpg';
 export { default as szprycer } from './szprycer.jpg';
 export { default as soma } from './soma.jpg';
 export { default as somaTitle } from './somaTitle.jpg';

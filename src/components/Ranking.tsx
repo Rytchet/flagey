@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 
-import { Dialog } from '@material-ui/core';
+import { Dialog, DialogProps } from '@material-ui/core';
 
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -16,6 +16,7 @@ const useStyles = makeStyles((theme: Theme) =>
       minWidth: '500px',
       paddingBottom: '30px',
       backgroundColor: 'black',
+      cursor: 'pointer',
       [theme.breakpoints.down('sm')]: {
         minWidth: '82vw',
       },
@@ -40,13 +41,10 @@ export default function Ranking({ setOpen, open, albums }: RankingProps) {
   const [displayTitles, setDisplayTitles] = useState(false);
 
   return (
-    <Dialog onClose={() => setOpen(false)} open={open}>
+    <Dialog onClose={() => setOpen(false)} open={open} scroll="body">
       <Table
         className={classes.table}
         onClick={() => setDisplayTitles(!displayTitles)}
-        style={{
-          cursor: 'pointer',
-        }}
       >
         <TableBody>
           {Array.from(albums.values())
