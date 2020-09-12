@@ -1,0 +1,16 @@
+export { default as trojkat } from './trojkat.jpg';
+export { default as trojkatTitle } from './trojkatTitle.jpg';
+export { default as umowa } from './umowa.jpg';
+export { default as wosk } from './wosk.jpg';
+export { default as szprycer } from './szprycer.jpg';
+export { default as soma } from './soma.jpg';
+export { default as somaTitle } from './somaTitle.jpg';
+export { default as soma025 } from './soma025.jpg';
+export { default as soma025Title } from './soma025Title.png';
+export { default as belga } from './belga.jpg';
+export { default as flagey } from './flagey.png';
+export { default as flageyTitle } from './flageyTitle.png';
+export { default as pocztowka } from './pocztowka.jpg';
+export { default as pocztowkaTitle } from './pocztowkaTitle.jpg';
+export { default as jarmark } from './jarmark.jpg';
+export { default as europa } from './europa.jpg';
