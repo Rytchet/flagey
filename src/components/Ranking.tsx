@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 
-import { Dialog, DialogProps } from '@material-ui/core';
+import { Dialog } from '@material-ui/core';
 
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';

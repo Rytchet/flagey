@@ -122,11 +122,7 @@ function App() {
 
       <Ranking setOpen={setRankingOpen} open={rankingOpen} albums={albums} />
 
-      <EndSnackbar
-        open={snackbarOpen}
-        setOpen={setSnackbarOpen}
-        restart={restart}
-      />
+      <EndSnackbar open={snackbarOpen} restart={restart} />
     </div>
   );
 }
