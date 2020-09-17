@@ -2,22 +2,28 @@
 
 ## [Visit the site here](https://master.d2a1zswmysbvia.amplifyapp.com/)!
 
-**Flagey** is a site where you can compare music albums (all [Taco Hemingway](https://en.wikipedia.org/wiki/Taco_Hemingway) albums). 
+**Flagey** is a minimalistic site where you can make a ranking of music albums (all [Taco Hemingway](https://en.wikipedia.org/wiki/Taco_Hemingway) albums).
 
-## Features
+## ⭐ Features
 
-* ⚛️ Implements the [MaterialUI](https://material-ui.com/) component library
-* 📈 Uses the [Elo rating system](https://en.wikipedia.org/wiki/Elo_rating_system) to dynamically generate a ranking of the albums.
-* 📱 Fully responsive 
-* 🤯 Click on the ranking to switch between album view / title view
+- ⚛️ Implements the [MaterialUI](https://material-ui.com/) component library
+- 📈 Uses the [Elo rating system](https://en.wikipedia.org/wiki/Elo_rating_system) to dynamically generate a ranking of the albums.
+- 📱 Fully responsive
+- 🤯 Click on the ranking to switch between album view / title view
 
-## Screenshots!
+## 📸 Screenshots!
 
 ![Image](https://i.imgur.com/er5NDWq.png)
 ![Image](https://i.imgur.com/2H1vD2z.png)
 ![Image](https://i.imgur.com/Z19NUlG.png)
 
-## Available Scripts
+## 🤔 Future features?
+
+- Multiple artists!
+- A custom rating system!
+- Have a way for albums to be 'equal'!
+
+## 👨‍💻 Available Scripts
 
 In the project directory, you can run:
 
