@@ -1,6 +1,6 @@
 # Flagey
 
-## [Visit the site here](https://master.d2a1zswmysbvia.amplifyapp.com/)!
+## [Visit the site here](https://flagey.oskarg.me/)!
 
 **Flagey** is a minimalistic site where you can make a ranking of music albums (all [Taco Hemingway](https://en.wikipedia.org/wiki/Taco_Hemingway) albums).
 
