@@ -26,9 +26,15 @@ type ButtonsProps = {
   setOpen: (state: boolean) => void;
   matches: number;
   total: number;
+  finished: boolean;
 };
 
-export default function Buttons({ setOpen, matches, total }: ButtonsProps) {
+export default function Buttons({
+  setOpen,
+  matches,
+  total,
+  finished,
+}: ButtonsProps) {
   const classes = useStyles();
 
   return (
@@ -43,7 +49,7 @@ export default function Buttons({ setOpen, matches, total }: ButtonsProps) {
           disableRipple
           variant="extended"
         >
-          {matches} / {total}
+          {finished ? 'DONE' : `${matches} / ${total}`}
         </Fab>
       </Tooltip>
       <Fab color="secondary" variant="extended" onClick={() => setOpen(true)}>

@@ -16,6 +16,23 @@ import albums from './albums';
 
 const elo = new EloRank();
 
+const pairSet: Set<[string, string]> = new Set();
+const albumNames = Array.from(albums.keys());
+for (let i = 0; i < albumNames.length; i++) {
+  for (let j = i + 1; j < albumNames.length; j++) {
+    pairSet.add([albumNames[i], albumNames[j]]);
+  }
+}
+
+const getRandomPair = () => {
+  const pairList = Array.from(pairSet);
+  const randomPair = pairList[Math.floor(Math.random() * pairList.length)];
+  pairSet.delete(randomPair);
+  const album1 = albums.get(randomPair[0])!;
+  const album2 = albums.get(randomPair[1])!;
+  return [album1, album2];
+};
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -26,45 +43,19 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-const getRandomAlbum = () => {
-  let keys = Array.from(albums.keys());
-  return albums.get(keys[Math.floor(Math.random() * keys.length)])!;
-};
-
-const totalMatches = () => {
-  return (albums.size * (albums.size - 1)) / 2;
-};
-
 function App() {
   const classes = useStyles();
   const [rankingOpen, setRankingOpen] = useState(false);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const [finished, setFinished] = useState(false);
-  const [matched, setMatched] = useState([] as string[][]);
   const [album1, setAlbum1] = useState({} as Album);
   const [album2, setAlbum2] = useState({} as Album);
 
+  const totalMatches = (albums.size * (albums.size - 1)) / 2;
+
   const setNewAlbums = () => {
-    let newAlbum1: Album;
-    let newAlbum2: Album;
-
-    do {
-      newAlbum1 = getRandomAlbum();
-      newAlbum2 = getRandomAlbum();
-    } while (
-      matched.some(
-        // References to these variables are intended, so we can mute a warning
-        // eslint-disable-next-line
-        (match) =>
-          match.includes(newAlbum1.name) && match.includes(newAlbum2.name)
-      ) ||
-      newAlbum1.name === newAlbum2.name
-    );
-
-    console.log('setting');
-
-    setMatched((matched) => [...matched, [newAlbum1.name, newAlbum2.name]]);
+    const [newAlbum1, newAlbum2] = getRandomPair();
 
     setAlbum1(newAlbum1);
     setAlbum2(newAlbum2);
@@ -82,11 +73,10 @@ function App() {
     win.elo = elo.updateRating(expectedA, 1, win.elo);
     lose.elo = elo.updateRating(expectedB, 0, lose.elo);
 
-    if (matched.length < totalMatches()) {
+    if (pairSet.size > 0) {
       setNewAlbums();
     } else {
       // Update matched list so the number is accurate
-      setMatched((matched) => [...matched, []]);
       setFinished(true);
       setRankingOpen(true);
       setSnackbarOpen(true);
@@ -116,8 +106,9 @@ function App() {
 
       <Buttons
         setOpen={setRankingOpen}
-        matches={matched.length - 1}
-        total={totalMatches()}
+        matches={totalMatches - pairSet.size - 1}
+        total={totalMatches}
+        finished={finished}
       />
 
       <Ranking setOpen={setRankingOpen} open={rankingOpen} albums={albums} />
