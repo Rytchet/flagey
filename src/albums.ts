@@ -47,7 +47,7 @@ const albums: Map<string, Album> = new Map([
       displayName: 'Marmur',
       elo: 1200,
       cover: covers.marmur,
-      accent: '#000',
+      accent: '#f1f0e9',
       coverPosition: '85%',
       titlePosition: '52%',
     },
