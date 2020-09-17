@@ -76,7 +76,6 @@ function App() {
     if (pairSet.size > 0) {
       setNewAlbums();
     } else {
-      // Update matched list so the number is accurate
       setFinished(true);
       setRankingOpen(true);
       setSnackbarOpen(true);
