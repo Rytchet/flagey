@@ -7,12 +7,10 @@ import { Card, CardActionArea, CardMedia, Grid } from '@material-ui/core';
 import { Album } from '../interfaces';
 
 export default function AlbumCards({
-  album1,
-  album2,
+  albumPair,
   pick,
 }: {
-  album1: Album;
-  album2: Album;
+  albumPair: Album[];
   pick: (winner: string, loser: string) => void;
 }) {
   const useStyles = makeStyles((theme: Theme) =>
@@ -29,7 +27,7 @@ export default function AlbumCards({
         },
       },
       leftCard: {
-        backgroundColor: album1.accent,
+        backgroundColor: albumPair[0].accent,
         [theme.breakpoints.down('sm')]: {
           margin: '0px',
           height: '40vh',
@@ -40,7 +38,7 @@ export default function AlbumCards({
         },
       },
       rightCard: {
-        backgroundColor: album2.accent,
+        backgroundColor: albumPair[1].accent,
         [theme.breakpoints.down('sm')]: {
           margin: '0px',
           width: '40vh',
@@ -73,12 +71,14 @@ export default function AlbumCards({
     >
       <Grid item md={6} lg={4}>
         <Card className={classes.leftCard}>
-          <CardActionArea onClick={() => pick(album1.name, album2.name)}>
+          <CardActionArea
+            onClick={() => pick(albumPair[0].name, albumPair[1].name)}
+          >
             <CardMedia
               className={classes.cover}
               component="img"
-              image={album1.cover}
-              title={album1.displayName}
+              image={albumPair[0].cover}
+              title={albumPair[0].displayName}
             />
           </CardActionArea>
         </Card>
@@ -86,12 +86,14 @@ export default function AlbumCards({
       <Grid item lg={2} />
       <Grid item md={6} lg={4}>
         <Card className={classes.rightCard}>
-          <CardActionArea onClick={() => pick(album2.name, album1.name)}>
+          <CardActionArea
+            onClick={() => pick(albumPair[1].name, albumPair[0].name)}
+          >
             <CardMedia
               className={classes.cover}
               component="img"
-              image={album2.cover}
-              title={album2.displayName}
+              image={albumPair[1].cover}
+              title={albumPair[1].displayName}
             />
           </CardActionArea>
         </Card>

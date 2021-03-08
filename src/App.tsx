@@ -57,8 +57,7 @@ function App() {
   const [endSnackbarOpen, setEndSnackbarOpen] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const [finished, setFinished] = useState(false);
-  const [album1, setAlbum1] = useState({} as Album);
-  const [album2, setAlbum2] = useState({} as Album);
+  const [albumPair, setAlbumPair] = useState([] as Album[]);
 
   const theme = createMuiTheme({
     palette: {
@@ -69,10 +68,7 @@ function App() {
   const totalMatches = (albums.size * (albums.size - 1)) / 2;
 
   const setNewAlbums = () => {
-    const [newAlbum1, newAlbum2] = getRandomPair();
-
-    setAlbum1(newAlbum1);
-    setAlbum2(newAlbum2);
+    setAlbumPair(getRandomPair());
   };
 
   const pick = (winner: string, loser: string) => {
@@ -121,9 +117,9 @@ function App() {
       <ThemeProvider theme={theme}>
         <CssBaseline />
 
-        <Background album1={album1} album2={album2} />
+        <Background albumPair={albumPair} />
 
-        <AlbumCards album1={album1} album2={album2} pick={pick} />
+        <AlbumCards albumPair={albumPair} pick={pick} />
 
         <Buttons
           setRankingOpen={setRankingOpen}

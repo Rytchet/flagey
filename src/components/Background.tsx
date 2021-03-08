@@ -4,17 +4,11 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 
 import { Album } from '../interfaces';
 
-export default function Background({
-  album1,
-  album2,
-}: {
-  album1: Album;
-  album2: Album;
-}) {
+export default function Background({ albumPair }: { albumPair: Album[] }) {
   const useStyles = makeStyles((theme: Theme) =>
     createStyles({
       leftBackground: {
-        backgroundImage: `url('${album1.cover}')`,
+        backgroundImage: `url('${albumPair[0].cover}')`,
         filter: 'blur(5px)',
         height: '100%',
         width: '50%',
@@ -33,7 +27,7 @@ export default function Background({
         },
       },
       rightBackground: {
-        backgroundImage: `url('${album2.cover}')`,
+        backgroundImage: `url('${albumPair[1].cover}')`,
         filter: 'blur(5px)',
         height: '100%',
         width: '50%',
