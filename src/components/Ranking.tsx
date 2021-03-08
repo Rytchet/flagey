@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
+
 import { makeStyles, Theme } from '@material-ui/core/styles';
 
-import { Dialog } from '@material-ui/core';
-
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableRow from '@material-ui/core/TableRow';
+import {
+  Dialog,
+  Table,
+  TableBody,
+  TableCell,
+  TableRow,
+} from '@material-ui/core';
 
 import { Album } from '../interfaces';
 

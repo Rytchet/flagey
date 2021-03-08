@@ -1,5 +1,7 @@
 import React from 'react';
+
 import { makeStyles, Theme } from '@material-ui/core/styles';
+import { Close as CloseIcon, GitHub as GitHubIcon } from '@material-ui/icons';
 
 import {
   Button,
@@ -11,7 +13,6 @@ import {
   Link,
   Typography,
 } from '@material-ui/core';
-import { Close as CloseIcon, GitHub as GitHubIcon } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme: Theme) => ({
   closeButton: {
@@ -28,8 +29,6 @@ type HelpProps = {
 
 export default function Help({ setOpen, open }: HelpProps) {
   const classes = useStyles();
-  const preventDefault = (event: React.SyntheticEvent) =>
-    event.preventDefault();
 
   return (
     <Dialog onClose={() => setOpen(false)} open={open}>
