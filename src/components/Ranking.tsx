@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { makeStyles, Theme } from '@material-ui/core/styles';
 
 import { Dialog } from '@material-ui/core';
 
@@ -10,25 +10,23 @@ import TableRow from '@material-ui/core/TableRow';
 
 import { Album } from '../interfaces';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    table: {
-      minWidth: '500px',
-      paddingBottom: '30px',
-      backgroundColor: 'black',
-      cursor: 'pointer',
-      [theme.breakpoints.down('sm')]: {
-        minWidth: '82vw',
-      },
+const useStyles = makeStyles((theme: Theme) => ({
+  table: {
+    minWidth: '500px',
+    paddingBottom: '30px',
+    backgroundColor: 'black',
+    cursor: 'pointer',
+    [theme.breakpoints.down('sm')]: {
+      minWidth: '82vw',
     },
-    tableRow: {
-      backgroundRepeat: 'no-repeat',
-      backgroundSize: 'cover',
-      transition: 'background-position 1s',
-      height: '80px',
-    },
-  })
-);
+  },
+  tableRow: {
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+    transition: 'background-position 1s',
+    height: '80px',
+  },
+}));
 
 type RankingProps = {
   setOpen: (state: boolean) => void;

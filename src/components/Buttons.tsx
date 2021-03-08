@@ -1,10 +1,13 @@
 import React from 'react';
 
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import EqualizerIcon from '@material-ui/icons/Equalizer';
-import { Fab, Tooltip } from '@material-ui/core';
+import { makeStyles, createStyles } from '@material-ui/core/styles';
+import {
+  Equalizer as EqualizerIcon,
+  HelpOutline as HelpIcon,
+} from '@material-ui/icons';
+import { Fab, Grid, Tooltip } from '@material-ui/core';
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles((theme) =>
   createStyles({
     container: {
       position: 'absolute',
@@ -12,25 +15,25 @@ const useStyles = makeStyles((theme: Theme) =>
       right: 20,
     },
     counterFab: {
-      marginRight: 8,
-      width: '80px',
       cursor: 'default',
     },
     icon: {
-      marginRight: '5px',
+      marginRight: theme.spacing(1),
     },
   })
 );
 
 type ButtonsProps = {
-  setOpen: (state: boolean) => void;
+  setRankingOpen: (state: boolean) => void;
+  setHelpOpen: (state: boolean) => void;
   matches: number;
   total: number;
   finished: boolean;
 };
 
 export default function Buttons({
-  setOpen,
+  setRankingOpen,
+  setHelpOpen,
   matches,
   total,
   finished,
@@ -39,23 +42,36 @@ export default function Buttons({
 
   return (
     <div className={classes.container}>
-      <Tooltip title="Make all picks for an accurate result">
-        <Fab
-          className={classes.counterFab}
-          style={{
-            backgroundColor: '#1d1d1d',
-            color: '#e0e0e0',
-          }}
-          disableRipple
-          variant="extended"
-        >
-          {finished ? 'DONE' : `${matches} / ${total}`}
-        </Fab>
-      </Tooltip>
-      <Fab color="secondary" variant="extended" onClick={() => setOpen(true)}>
-        <EqualizerIcon className={classes.icon} />
-        See ranking
-      </Fab>
+      <Grid container spacing={2}>
+        <Grid item>
+          <Fab disableRipple size="medium" onClick={() => setHelpOpen(true)}>
+            <HelpIcon />
+          </Fab>
+        </Grid>
+
+        <Grid item>
+          <Tooltip title="Make all picks for an accurate result">
+            <Fab
+              className={classes.counterFab}
+              disableRipple
+              variant="extended"
+            >
+              {finished ? 'DONE' : `${matches} / ${total}`}
+            </Fab>
+          </Tooltip>
+        </Grid>
+
+        <Grid item>
+          <Fab
+            color="secondary"
+            variant="extended"
+            onClick={() => setRankingOpen(true)}
+          >
+            <EqualizerIcon className={classes.icon} />
+            See ranking
+          </Fab>
+        </Grid>
+      </Grid>
     </div>
   );
 }

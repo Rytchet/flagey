@@ -1,15 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import EloRank from 'elo-rank';
 
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import {
+  makeStyles,
+  Theme,
+  createStyles,
+  ThemeProvider,
+  createMuiTheme,
+} from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
 import {
   AlbumCards,
   Background,
-  Ranking,
   Buttons,
   EndSnackbar,
+  Help,
+  Ranking,
 } from './components';
 import { Album } from './interfaces';
 import albums from './albums';
@@ -46,11 +53,18 @@ const useStyles = makeStyles((theme: Theme) =>
 function App() {
   const classes = useStyles();
   const [rankingOpen, setRankingOpen] = useState(false);
-  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [helpOpen, setHelpOpen] = useState(false);
+  const [endSnackbarOpen, setEndSnackbarOpen] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const [finished, setFinished] = useState(false);
   const [album1, setAlbum1] = useState({} as Album);
   const [album2, setAlbum2] = useState({} as Album);
+
+  const theme = createMuiTheme({
+    palette: {
+      type: 'dark',
+    },
+  });
 
   const totalMatches = (albums.size * (albums.size - 1)) / 2;
 
@@ -78,7 +92,7 @@ function App() {
     } else {
       setFinished(true);
       setRankingOpen(true);
-      setSnackbarOpen(true);
+      setEndSnackbarOpen(true);
     }
   };
 
@@ -89,8 +103,6 @@ function App() {
   useEffect(() => {
     setNewAlbums();
     setLoaded(true);
-    // This line gives an error about a missing dependency, but it's ok to ignore
-    // eslint-disable-next-line
   }, []);
 
   if (!loaded) {
@@ -99,20 +111,27 @@ function App() {
 
   return (
     <div className={classes.root}>
-      <Background album1={album1} album2={album2} />
-      <CssBaseline />
-      <AlbumCards album1={album1} album2={album2} pick={pick} />
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
 
-      <Buttons
-        setOpen={setRankingOpen}
-        matches={totalMatches - pairSet.size - 1}
-        total={totalMatches}
-        finished={finished}
-      />
+        <Background album1={album1} album2={album2} />
 
-      <Ranking setOpen={setRankingOpen} open={rankingOpen} albums={albums} />
+        <AlbumCards album1={album1} album2={album2} pick={pick} />
 
-      <EndSnackbar open={snackbarOpen} restart={restart} />
+        <Buttons
+          setRankingOpen={setRankingOpen}
+          setHelpOpen={setHelpOpen}
+          matches={totalMatches - pairSet.size - 1}
+          total={totalMatches}
+          finished={finished}
+        />
+
+        <Help setOpen={setHelpOpen} open={helpOpen} />
+
+        <Ranking setOpen={setRankingOpen} open={rankingOpen} albums={albums} />
+
+        <EndSnackbar open={endSnackbarOpen} restart={restart} />
+      </ThemeProvider>
     </div>
   );
 }
