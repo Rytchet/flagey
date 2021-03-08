@@ -9,7 +9,6 @@
 - ⚛️ Implements the [MaterialUI](https://material-ui.com/) component library
 - 📈 Uses the [Elo rating system](https://en.wikipedia.org/wiki/Elo_rating_system) to dynamically generate a ranking of the albums.
 - 📱 Fully responsive
-- 🤯 Click on the ranking to switch between album view / title view
 
 ## 📸 Screenshots!
 
@@ -19,9 +18,10 @@
 
 ## 🤔 Future features?
 
-- Multiple artists!
-- A custom rating system!
-- Have a way for albums to be 'equal'!
+- Multiple artists
+- A custom rating system
+- Have a way for albums to be 'equal'
+- Smart preload for images
 
 ## 👨‍💻 Available Scripts
 
