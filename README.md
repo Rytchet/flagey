@@ -22,6 +22,7 @@
 - A custom rating system
 - Have a way for albums to be 'equal'
 - Smart preload for images
+- Share function for ranking
 
 ## 👨‍💻 Available Scripts
 
