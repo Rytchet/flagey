@@ -13,13 +13,22 @@ import {
 import { Album } from '../interfaces';
 
 const useStyles = makeStyles((theme: Theme) => ({
+  dialog: {
+    '& div': {
+      overflowX: 'hidden',
+    },
+  },
   table: {
     minWidth: '500px',
     paddingBottom: '30px',
     backgroundColor: 'black',
     cursor: 'pointer',
+    overflowX: 'hidden',
+    marginLeft: '50%',
+    transform: 'translateX(-50%)',
   },
   tableRow: {
+    backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
     transition: 'background-position 1s',
@@ -38,7 +47,12 @@ export default function Ranking({ setOpen, open, albums }: RankingProps) {
   const [displayTitles, setDisplayTitles] = useState(false);
 
   return (
-    <Dialog onClose={() => setOpen(false)} open={open} scroll="body">
+    <Dialog
+      className={classes.dialog}
+      onClose={() => setOpen(false)}
+      open={open}
+      scroll="body"
+    >
       <Table
         className={classes.table}
         onClick={() => setDisplayTitles(!displayTitles)}
