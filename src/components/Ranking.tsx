@@ -18,9 +18,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     paddingBottom: '30px',
     backgroundColor: 'black',
     cursor: 'pointer',
-    [theme.breakpoints.down('sm')]: {
-      minWidth: '82vw',
-    },
   },
   tableRow: {
     backgroundRepeat: 'no-repeat',
