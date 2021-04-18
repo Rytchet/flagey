@@ -97,13 +97,6 @@ function App() {
   };
 
   useEffect(() => {
-    // Preload all images
-    albums.forEach((album) => {
-      const img = new Image();
-      img.src = album.cover;
-      if (album.titleCover) img.src = album.titleCover;
-    });
-
     setNewAlbums();
     setLoaded(true);
   }, []);
