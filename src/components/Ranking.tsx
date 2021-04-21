@@ -11,6 +11,7 @@ import {
 } from '@material-ui/core';
 
 import { Album } from '../interfaces';
+import { useUtilStyles } from '../utils';
 
 const useStyles = makeStyles((theme: Theme) => ({
   dialog: {
@@ -44,6 +45,7 @@ type RankingProps = {
 
 export default function Ranking({ setOpen, open, albums }: RankingProps) {
   const classes = useStyles();
+  const utilClasses = useUtilStyles();
   const [displayTitles, setDisplayTitles] = useState(false);
 
   return (
@@ -60,7 +62,7 @@ export default function Ranking({ setOpen, open, albums }: RankingProps) {
         <TableBody>
           {Array.from(albums.values())
             .sort((a1, a2) => (a1.elo > a2.elo ? -1 : 1))
-            .map((album) => (
+            .map((album, index) => (
               <TableRow
                 key={album.name}
                 className={classes.tableRow}
@@ -77,7 +79,11 @@ export default function Ranking({ setOpen, open, albums }: RankingProps) {
                   style={{
                     border: '0',
                   }}
-                />
+                >
+                  <span className={utilClasses.srOnly}>
+                    #{index + 1}: {album.displayName}
+                  </span>
+                </TableCell>
               </TableRow>
             ))}
         </TableBody>
