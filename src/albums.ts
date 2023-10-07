@@ -152,6 +152,18 @@ const albums: Map<string, Album> = new Map([
       titlePosition: '8%',
     },
   ],
+  [
+    'oswiecenie',
+    {
+      name: 'oswiecenie',
+      displayName: '1-800-OŚWIECENIE',
+      elo: 1200,
+      cover: covers.oswiecenie,
+      accent: '#fd5f3d',
+      coverPosition: '49%',
+      titlePosition: '18%',
+    },
+  ],
 ]);
 
 export default albums;

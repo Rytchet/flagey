@@ -46,7 +46,7 @@ type RankingProps = {
 export default function Ranking({ setOpen, open, albums }: RankingProps) {
   const classes = useStyles();
   const utilClasses = useUtilStyles();
-  const [displayTitles, setDisplayTitles] = useState(false);
+  const [displayTitles, setDisplayTitles] = useState(true);
 
   return (
     <Dialog

@@ -15,3 +15,4 @@ export { default as pocztowka } from './pocztowka.jpg';
 export { default as pocztowkaTitle } from './pocztowkaTitle.jpg';
 export { default as jarmark } from './jarmark.jpg';
 export { default as europa } from './europa.jpg';
+export { default as oswiecenie } from './oswiecenie.png';
